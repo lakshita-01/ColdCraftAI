@@ -10,7 +10,7 @@
 4. Configure:
    - **Name**: `coldcraft-backend`
    - **Root Directory**: `server`
-   - **Build Command**: `npm install`
+   - **Build Command**: `npm install && npm rebuild sqlite3`
    - **Start Command**: `node server.js`
    - **Instance Type**: Free
 5. Click **"Create Web Service"**
