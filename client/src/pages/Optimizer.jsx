@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Wand2, Copy, Check, Info, Upload, X } from 'lucide-react';
 import { generateAIResponse, readFileContent, waitForPuter, prewarmPuter, summarizeResumeLocal, extractJobRelevantPoints, analyzeResumeComprehensive } from '../services/puter.js';
+import API_URL from '../config/api';
 
 const Optimizer = () => {
   const [loading, setLoading] = useState(false);
@@ -133,7 +134,7 @@ Write the email now:`;
       });
       
       // Save to DB
-      await fetch('http://localhost:5000/api/emails', {
+      await fetch(`${API_URL}/api/emails`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

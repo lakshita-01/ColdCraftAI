@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import API_URL from '../config/api';
 
 export default function SMTPSettings({ open, onClose }) {
   const [loading, setLoading] = useState(false);
@@ -9,7 +10,7 @@ export default function SMTPSettings({ open, onClose }) {
   useEffect(() => {
     if (!open) return;
     setStatus('');
-    fetch('/api/smtp').then(r => r.json()).then(data => {
+    fetch(`${API_URL}/api/smtp`).then(r => r.json()).then(data => {
       if (data) setForm({ host: data.host || '', port: data.port || 587, secure: !!data.secure, user: data.user || '', pass: data.pass || '', fromAddress: data.fromAddress || '' });
     }).catch(() => {});
   }, [open]);
@@ -18,7 +19,7 @@ export default function SMTPSettings({ open, onClose }) {
     setLoading(true);
     setStatus('');
     try {
-      const res = await fetch('/api/smtp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+      const res = await fetch(`${API_URL}/api/smtp`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
       const j = await res.json();
       if (j.ok) setStatus('Saved'); else setStatus('Save failed');
     } catch (e) { setStatus('Save failed'); }
@@ -29,7 +30,7 @@ export default function SMTPSettings({ open, onClose }) {
     setTesting(true);
     setStatus('');
     try {
-      const res = await fetch('/api/smtp/test', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, to: form.fromAddress || form.user }) });
+      const res = await fetch(`${API_URL}/api/smtp/test`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, to: form.fromAddress || form.user }) });
       const j = await res.json();
       if (j.ok) setStatus('Test succeeded'); else setStatus('Test failed');
     } catch (e) { setStatus('Test failed: ' + (e.message || '')); }

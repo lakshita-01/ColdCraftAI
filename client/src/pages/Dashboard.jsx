@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { TrendingUp, Users, Mail, MousePointer2 } from 'lucide-react';
+import API_URL from '../config/api';
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -12,8 +13,8 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const [resData, resStats] = await Promise.all([
-          fetch('http://localhost:5000/api/analytics'),
-          fetch('http://localhost:5000/api/stats')
+          fetch(`${API_URL}/api/analytics`),
+          fetch(`${API_URL}/api/stats`)
         ]);
         setData(await resData.json());
         setStats(await resStats.json());
