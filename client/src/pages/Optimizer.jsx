@@ -24,8 +24,6 @@ const Optimizer = () => {
       try {
         await waitForPuter();
         setPuterReady(true);
-        // prewarm to reduce first-call latency
-        prewarmPuter();
       } catch (error) {
         console.error('Failed to initialize Puter.js:', error);
       }
@@ -171,15 +169,9 @@ Write the email now:`;
             <h2 className="text-4xl font-bold mb-4">Email Optimizer</h2>
             <p className="text-slate-400">Fill in the details to generate a high-conversion cold email.</p>
             {!puterReady && (
-              <div className="mt-3 text-xs text-amber-500/70 flex items-center gap-2">
-                <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
-                Loading AI engine...
-              </div>
-            )}
-            {puterReady && (
-              <div className="mt-3 text-xs text-cyan-vibrant/70 flex items-center gap-2">
-                <div className="w-2 h-2 bg-cyan-vibrant rounded-full" />
-                AI engine ready!
+              <div className="mt-3 text-xs text-slate-500/70 flex items-center gap-2">
+                <div className="w-2 h-2 bg-slate-500 rounded-full animate-pulse" />
+                Preparing AI...
               </div>
             )}
           </div>

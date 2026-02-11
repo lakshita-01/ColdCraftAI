@@ -13,11 +13,8 @@ function App() {
   const [showDemo, setShowDemo] = useState(false);
 
   useEffect(() => {
-    // Initialize Puter authentication on app load
-    const initAuth = async () => {
-      await initializePuterAuth();
-    };
-    initAuth();
+    // Initialize Puter authentication silently in background
+    initializePuterAuth();
   }, []);
 
   return (
