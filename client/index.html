@@ -7,22 +7,6 @@
     <title>ColdAI | High Response Emails</title>
     <!-- Puter.js for Zero-Config AI -->
     <script src="https://js.puter.com/v2/"></script>
-    <script>
-      // Auto-authenticate Puter.js in background with credentials
-      window.addEventListener('DOMContentLoaded', async () => {
-        if (window.puter) {
-          try {
-            // Silent authentication with stored credentials
-            const email = 'your-email@example.com'; // Replace with your Puter email
-            const password = 'your-password'; // Replace with your Puter password
-            await puter.auth.signIn({ username: email, password: password });
-            console.log('Puter authenticated successfully');
-          } catch (e) {
-            console.log('Puter auth failed, continuing without auth:', e.message);
-          }
-        }
-      });
-    </script>
     <style>
       * {
         margin: 0;

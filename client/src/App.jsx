@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
@@ -6,10 +6,19 @@ import Optimizer from './pages/Optimizer';
 import Dashboard from './pages/Dashboard';
 import SMTPSettings from './components/SMTPSettings';
 import DemoModal from './components/DemoModal';
+import { initializePuterAuth } from './services/puterAuth';
 
 function App() {
   const [showSmtp, setShowSmtp] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
+
+  useEffect(() => {
+    // Initialize Puter authentication on app load
+    const initAuth = async () => {
+      await initializePuterAuth();
+    };
+    initAuth();
+  }, []);
 
   return (
     <BrowserRouter>

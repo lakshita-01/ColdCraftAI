@@ -1,3 +1,5 @@
 node_modules
 client/public/demo_video.mp4
 *.mp4
+client/.env
+.env
